@@ -10,7 +10,7 @@ TimeMap::TimeMap()
 void TimeMap::set(string key, string value, int timestamp)
 {
 	TimeMap* newSet = new TimeMap();
-	if ((key.length() > 0 && key.length() < 101) && (value.length() > 0 && value.length() < 101) && (timestamp >0 &&timestamp <= pow(10, 7)))
+	if ((key.length() > 0 && key.length() < 101) && (value.length() > 0 && value.length() < 101) && (timestamp >0 && timestamp <= pow(10, 7)))
 	{
 		newSet->key = key;
 		newSet->value = value;
