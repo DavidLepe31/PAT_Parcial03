@@ -20,6 +20,7 @@ string TimeMap::get(string key, int timestamp)
 {
 	std::vector<TimeMap*>timep;
 	int i = 0;
+	std::string resul="";
 	while (i < regis.size())
 	{
 		if (key == regis[i]->key)
@@ -29,18 +30,15 @@ string TimeMap::get(string key, int timestamp)
 		i++;
 	}
 	i = timestamp;
-	while(i>=0)
+	int j = 0;
+	while (j < timep.size() && timep[j]->time<=timestamp)
 	{
-		int j = 0;
-		while (j < timep.size())
-		{
-			if (timep[j]->time==i)
-			{
-				return timep[j]->key;
-			}
-			j++;
-		}
-		i--;
+		j++;
 	}
-	return "";
+	if (j > 0)
+	{
+		if (timep[j - 1]->time <= timestamp)
+			resul = timep[j]->value;
+	}
+	return resul;
 }
