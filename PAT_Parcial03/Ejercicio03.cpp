@@ -7,10 +7,27 @@ TimeMap::TimeMap()
 	time = 0;
 }
 
+int buscarV(string key, std::vector<TimeMap*>data)
+{
+	int i = 0;
+	int resul = 0;
+	bool bande = false;
+
+	while (i < data.size())
+	{
+		if (data[i]->key == key)
+			if (data[i]->time > resul)
+				resul = data[i]->time;
+
+		i++;
+	}
+	return resul;
+}
+
 void TimeMap::set(string key, string value, int timestamp)
 {
 	TimeMap* newSet = new TimeMap();
-	if ((key.length() > 0 && key.length() < 101) && (value.length() > 0 && value.length() < 101) && (timestamp >0 && timestamp <= pow(10, 7)))
+	if ((key.length() > 0 && key.length() < 101) && (value.length() > 0 && value.length() < 101) && (timestamp >0 && timestamp <= pow(10, 7) && timestamp > buscarV(key, regis)))
 	{
 		newSet->key = key;
 		newSet->value = value;
