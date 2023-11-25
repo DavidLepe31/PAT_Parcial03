@@ -56,16 +56,16 @@ Node<int>* Ejercicio01::mergeLists(Node<Node<int>*>* lists)
         tmp = tmp2->value;
         while (tmp)
         {
-            Node<int>* newNode = new Node<int>();
+            
             if (headf == nullptr)
             {
-                headf->value = newNode->value;
+                headf->value = tmp->value;
                 headf->next = nullptr;
                 tmp = tmp->next;
                 tmp3 = headf;
                 continue;
             }
-            tmp3->next = newNode;
+            tmp3->next = tmp;
             tmp3 = tmp3->next;
             tmp = tmp->next;
         }
