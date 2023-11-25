@@ -50,6 +50,7 @@ Node<int>* Ejercicio01::mergeLists(Node<Node<int>*>* lists)
     Node<int>* tmp3 = headf;
     Node<int>* tmp = nullptr;
     Node<Node<int>*>* tmp2 = lists;
+
     while (tmp2)
     {
         tmp = tmp2->value;
@@ -58,8 +59,8 @@ Node<int>* Ejercicio01::mergeLists(Node<Node<int>*>* lists)
             Node<int>* newNode = new Node<int>();
             if (headf == nullptr)
             {
-                newNode->next = nullptr;
-                headf = newNode;
+                headf->value = newNode->value;
+                headf->next = nullptr;
                 tmp = tmp->next;
                 tmp3 = headf;
                 continue;
@@ -70,5 +71,6 @@ Node<int>* Ejercicio01::mergeLists(Node<Node<int>*>* lists)
         }
         tmp2 = tmp2->next;
     }
+
     return sortList(headf);
 }
