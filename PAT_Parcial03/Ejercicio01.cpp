@@ -63,11 +63,13 @@ Node<int>* Ejercicio01::mergeLists(Node<Node<int>*>* lists)
                 headf->next = nullptr;
                 tmp = tmp->next;
                 tmp3 = headf;
-                continue;
+                
             }
-            tmp3->next = tmp;
-            tmp3 = tmp3->next;
-            tmp = tmp->next;
+            else {
+                tmp3->next = tmp;
+                tmp3 = tmp3->next;
+                tmp = tmp->next;
+            }
         }
         tmp2 = tmp2->next;
     }
