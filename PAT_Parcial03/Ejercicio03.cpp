@@ -28,7 +28,7 @@ string TimeMap::get(string key, int timestamp)
 		}
 		i++;
 	}
-	i = timestamp-1;
+	i = timestamp;
 	while(i>=0)
 	{
 		int j = 0;
@@ -36,7 +36,7 @@ string TimeMap::get(string key, int timestamp)
 		{
 			if (timep[j]->time==i)
 			{
-				return timep[j]->value;
+				return timep[j]->key;
 			}
 			j++;
 		}
