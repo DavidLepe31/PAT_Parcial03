@@ -36,11 +36,11 @@ string TimeMap::get(string key, int timestamp)
 	}
 	if (j > 0)
 	{
-		if (timep[j]->time > timestamp && j<timep.size())
+		if (timep[j]->time > timestamp && j<=timep.size())
 		{
 			j = j - 1;
 		}
-		if (timep[j]->time <= timestamp && j < timep.size())
+		if (timep[j]->time <= timestamp && j <= timep.size())
 		{
 			resul = timep[j]->value;
 		}
