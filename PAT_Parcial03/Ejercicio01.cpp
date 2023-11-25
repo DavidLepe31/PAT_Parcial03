@@ -68,6 +68,7 @@ Node<int>* Ejercicio01::mergeLists(Node<Node<int>*>* lists)
             tmp3 = tmp3->next;
             tmp = tmp->next;
         }
+        tmp2 = tmp2->next;
     }
     return sortList(headf);
 }
