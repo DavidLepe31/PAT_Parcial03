@@ -34,23 +34,20 @@ string TimeMap::get(string key, int timestamp)
 	{
 		j++;
 	}
-	
-	if (j = timep.size())
+	if (timep.size()>0)
 	{
-		j = j - 1;
-	}
-	if (timep[j]->time > timestamp)
-	{
-		if (j > 0)
+		if (j = timep.size())
 		{
 			j = j - 1;
 		}
-	}
-	if (timep.size() > 0)
-	{
+		if (timep[j]->time > timestamp)
+		{
+			if (j > 0)
+			{
+				j = j - 1;
+			}
+		}
 		resul = timep[j]->value;
 	}
-	
-	
 	return resul;
 }
