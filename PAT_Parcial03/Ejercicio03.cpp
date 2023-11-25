@@ -28,7 +28,7 @@ string TimeMap::get(string key, int timestamp)
 		}
 		i++;
 	}
-	i = timestamp;
+	i = timestamp-1;
 	while(i>=0)
 	{
 		int j = 0;
