@@ -38,9 +38,10 @@ string TimeMap::get(string key, int timestamp)
 			i++;
 		}
 		int j = 0;
+		i = 0;
 		while (j < timep.size())
 		{
-			if (timep[j]->time = timestamp)
+			if (timep[j]->time == timestamp)
 			{
 				resul = timep[j]->value;
 				break;
