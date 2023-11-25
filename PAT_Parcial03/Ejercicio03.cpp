@@ -23,7 +23,7 @@ string TimeMap::get(string key, int timestamp)
 	std::string resul="";
 	while (i < regis.size())
 	{
-		if (key == regis[i]->key)
+		if (regis[i]->key==key)
 		{
 			timep.push_back(regis[i]);
 		}
@@ -34,21 +34,23 @@ string TimeMap::get(string key, int timestamp)
 	{
 		j++;
 	}
-	if (j > 0)
+	
+	if (j = timep.size())
 	{
-		if (j = timep.size())
-		{
-			j = j - 1;
-		}
-		if (timep[j]->time > timestamp)
-		{
-			j = j - 1;
-		}
-		if (timep[j]->time <= timestamp)
-		{
-			resul = timep[j]->value;
-		}
-		
+		j = j - 1;
 	}
+	if (timep[j]->time > timestamp)
+	{
+		if (j > 0)
+		{
+			j = j - 1;
+		}
+	}
+	if (timep.size() > 0)
+	{
+		resul = timep[j]->value;
+	}
+	
+	
 	return resul;
 }
