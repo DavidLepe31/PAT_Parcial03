@@ -6,7 +6,7 @@ vector<string>* Ejercicio02::findRepeatedDnaSequences(Node<char>* head)
     Node<char>* tmp = head;
     Node<char>* count = head;
     string sequence = "";
-    vector<string>adn;
+    vector<string>* adn = new vector<string>();
     vector<string>tmpadn;
     std::map<string, int>tmp2;
     while (count)
@@ -37,9 +37,9 @@ vector<string>* Ejercicio02::findRepeatedDnaSequences(Node<char>* head)
     {
         if (it.second > 1)
         {
-            adn.push_back(it.first);
+            adn->push_back(it.first);
         }
 
     }
-    return nullptr;
+    return adn;
 }
