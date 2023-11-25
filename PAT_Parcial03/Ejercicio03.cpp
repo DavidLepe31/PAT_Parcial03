@@ -38,7 +38,9 @@ string TimeMap::get(string key, int timestamp)
 	if (j > 0)
 	{
 		if (timep[j - 1]->time <= timestamp)
+		{
 			resul = timep[j]->value;
+		}
 	}
 	return resul;
 }
