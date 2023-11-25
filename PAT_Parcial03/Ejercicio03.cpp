@@ -2,17 +2,21 @@
 #include <unordered_map>
 #include <vector>
 
-class TimeMap {
-public:
-    TimeMap() {
+
+std::unordered_map<string, std::vector<std::pair<int, string>>>vreg;
+
+    TimeMap::TimeMap() 
+    {
 
     }
 
-    void set(string key, string value, int timestamp) {
+    void TimeMap:: set(string key, string value, int timestamp) 
+    {
         vreg[key].push_back({ timestamp,value });
     }
 
-    string get(string key, int timestamp) {
+    string TimeMap::get(string key, int timestamp) 
+    {
         if (vreg.find(key) == vreg.end()) {
             return "";
         }
@@ -37,6 +41,4 @@ public:
 
         return "";
     }
-private:
-    std::unordered_map<string, std::vector<std::pair<int, string>>>vreg;
-};
+
