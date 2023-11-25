@@ -30,9 +30,14 @@ string TimeMap::get(string key, int timestamp)
 	std::vector<TimeMap*>timep;
 	int i = 0;
 	std::string resul="";
+	std::string busca = "";
+	if (key.length() > 100)
+		busca = key.substr(0, 100);
+	else
+		busca = key;
 	while (i < regis.size())
 	{
-		if (regis[i]->key==key)
+		if (regis[i]->key==busca)
 		{
 			timep.push_back(regis[i]);
 		}
