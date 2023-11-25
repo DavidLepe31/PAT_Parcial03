@@ -11,12 +11,12 @@ void TimeMap::set(string key, string value, int timestamp)
 {
 	TimeMap* newSet = new TimeMap();
 	std::string temp = "";
-	if (key.size() > 100)
+	if (key.length() > 100)
 		temp = key.substr(0,100);
 	else
 		temp = key;
 	newSet->key = temp;
-	if (value.size() > 100)
+	if (value.length() > 100)
 		temp = value.substr(0,100);
 	else
 		temp = value;
