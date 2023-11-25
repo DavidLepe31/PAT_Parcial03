@@ -1,44 +1,61 @@
 #include "Ejercicio03.h"
-#include <unordered_map>
-#include <vector>
 
+TimeMap::TimeMap()
+{
+	key = "";
+	value = "";
+	time = 0;
+}
 
-std::unordered_map<string, std::vector<std::pair<int, string>>>vreg;
+void TimeMap::set(string key, string value, int timestamp)
+{
+	TimeMap* newSet = new TimeMap();
+	int timeprev = 0;
+	
+	std::string temp = value;
+	newSet->key = key;
+	if (value.length() > 100)
+	{
+		temp = value.substr(0, 100);
+	}
+	newSet->key = key;
+	newSet->value = temp;
+	newSet->time = timestamp;
+	regis.push_back(newSet);
+	
+}
 
-    TimeMap::TimeMap() 
-    {
-
-    }
-
-    void TimeMap:: set(string key, string value, int timestamp) 
-    {
-        vreg[key].push_back({ timestamp,value });
-    }
-
-    string TimeMap::get(string key, int timestamp) 
-    {
-        if (vreg.find(key) == vreg.end()) {
-            return "";
-        }
-        int imin = 0;
-        int imax = vreg[key].size() - 1;
-        while (imin <= imax) {
-            int imid = imin + (imax - imin) / 2;
-            if (vreg[key][imid].first < timestamp) {
-                imin = imid + 1;
-            }
-            else if (vreg[key][imid].first > timestamp) {
-                imax = imid - 1;
-            }
-            else
-                return vreg[key][imid].second;
-        }
-
-        if (imax >= 0)
-        {
-            return vreg[key][imax].second;
-        }
-
-        return "";
-    }
-
+string TimeMap::get(string key, int timestamp)
+{
+	std::vector<TimeMap*>timep;
+	int i = 0;
+	std::string resul="";
+	
+		while (i < regis.size())
+		{
+			if (regis[i]->key == key)
+			{
+				timep.push_back(regis[i]);
+			}
+			i++;
+		}
+		int j = 0;
+		i = 0;
+		while (j < timep.size())
+		{
+			if (timep[j]->time == timestamp)
+			{
+				resul = timep[j]->value;
+				break;
+			}
+			if (timep[j]->time <= timestamp)
+				if (timep[j]->time > i)
+				{
+					resul = timep[j]->value;
+					i = timep[j]->time;
+				}
+			j++;
+		}
+	
+	return resul;
+}
