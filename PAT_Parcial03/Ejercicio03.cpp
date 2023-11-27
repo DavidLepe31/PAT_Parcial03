@@ -15,8 +15,9 @@ void TimeMap::set(string key, string value, int timestamp)
 string TimeMap::get(string key, int timestamp)
 {
     if (map->find(key) == map->end())
+    {
         return "";
-
+    }
     vector<Pair*> val = (*map)[key];
 
     unsigned int high = val.size();
@@ -24,8 +25,9 @@ string TimeMap::get(string key, int timestamp)
     unsigned int middle;
 
     if (val[low]->timestamp > timestamp)
+    {
         return "";
-
+    }
     if (val[high - 1]->timestamp <= timestamp)
         return val[high - 1]->value;
 
@@ -51,7 +53,7 @@ TimeMap::~TimeMap()
             delete pair;
         }
     }
-    delete orden;
+    delete map;
 }
 }
 
