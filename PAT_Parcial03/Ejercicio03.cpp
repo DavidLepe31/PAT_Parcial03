@@ -4,20 +4,20 @@
 
 TimeMap::TimeMap()
 {
-    orden = new unordered_map<string, vector<Pair*>>();
+    map = new unordered_map<string, vector<Pair*>>();
 }
 
 void TimeMap::set(string key, string value, int timestamp)
 {
-    (*orden)[key].emplace_back(new Pair{ timestamp, value });
+    (*map)[key].emplace_back(new Pair{ timestamp, value });
 }
 
 string TimeMap::get(string key, int timestamp)
 {
-    if (orden->find(key) == orden->end())
+    if (map->find(key) == map->end())
         return "";
 
-    vector<Pair*> val = (*orden)[key];
+    vector<Pair*> val = (*map)[key];
 
     unsigned int high = val.size();
     unsigned int low = 0;
@@ -29,7 +29,7 @@ string TimeMap::get(string key, int timestamp)
     if (val[high - 1]->timestamp <= timestamp)
         return val[high - 1]->value;
 
-    while (low < top) {
+    while (low < high) {
         middle = (high + low) >> 1;
 
         if (val[middle]->timestamp == timestamp)
@@ -46,7 +46,7 @@ string TimeMap::get(string key, int timestamp)
 
 TimeMap::~TimeMap()
 {
-    for (auto& entry : *orden) {
+    for (auto& entry : *map) {
         for (auto& pair : entry.second) {
             delete pair;
         }

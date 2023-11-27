@@ -16,7 +16,7 @@ private:
 		string value;
 	};
 
-	unordered_map<string, vector<Pair*>>* ;
+	unordered_map<string, vector<Pair*>>*map ;
 
 public:
 	TimeMap();
