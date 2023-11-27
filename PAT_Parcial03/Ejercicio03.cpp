@@ -29,7 +29,9 @@ string TimeMap::get(string key, int timestamp)
         return "";
     }
     if (val[high - 1]->timestamp <= timestamp)
+    {
         return val[high - 1]->value;
+    }
 
     while (low < high) {
         middle = (high + low) >> 1;
@@ -55,5 +57,5 @@ TimeMap::~TimeMap()
     }
     delete map;
 }
-}
+
 
