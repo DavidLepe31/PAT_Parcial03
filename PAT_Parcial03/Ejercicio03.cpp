@@ -1,61 +1,57 @@
 #include "Ejercicio03.h"
+#include <map>
+#include <iterator>
 
 TimeMap::TimeMap()
 {
-	key = "";
-	value = "";
-	time = 0;
+    orden = new unordered_map<string, vector<Pair*>>();
 }
 
 void TimeMap::set(string key, string value, int timestamp)
 {
-	TimeMap* newSet = new TimeMap();
-	int timeprev = 0;
-	
-	std::string temp = value;
-	newSet->key = key;
-	if (value.length() > 100)
-	{
-		temp = value.substr(0, 100);
-	}
-	newSet->key = key;
-	newSet->value = temp;
-	newSet->time = timestamp;
-	regis.push_back(newSet);
-	
+    (*orden)[key].emplace_back(new Pair{ timestamp, value });
 }
 
 string TimeMap::get(string key, int timestamp)
 {
-	std::vector<TimeMap*>timep;
-	int i = 0;
-	std::string resul="";
-	
-		while (i < regis.size())
-		{
-			if (regis[i]->key == key)
-			{
-				timep.push_back(regis[i]);
-			}
-			i++;
-		}
-		int j = 0;
-		i = 0;
-		while (j < timep.size())
-		{
-			if (timep[j]->time == timestamp)
-			{
-				resul = timep[j]->value;
-				break;
-			}
-			if (timep[j]->time <= timestamp)
-				if (timep[j]->time > i)
-				{
-					resul = timep[j]->value;
-					i = timep[j]->time;
-				}
-			j++;
-		}
-	
-	return resul;
+    if (orden->find(key) == orden->end())
+        return "";
+
+    vector<Pair*> val = (*orden)[key];
+
+    unsigned int high = val.size();
+    unsigned int low = 0;
+    unsigned int middle;
+
+    if (val[low]->timestamp > timestamp)
+        return "";
+
+    if (val[high - 1]->timestamp <= timestamp)
+        return val[high - 1]->value;
+
+    while (low < top) {
+        middle = (high + low) >> 1;
+
+        if (val[middle]->timestamp == timestamp)
+            return val[middle]->value;
+
+        if (val[middle]->timestamp < timestamp)
+            low = middle + 1;
+        else
+            high = middle;
+    }
+
+    return val[middle]->value;
 }
+
+TimeMap::~TimeMap()
+{
+    for (auto& entry : *orden) {
+        for (auto& pair : entry.second) {
+            delete pair;
+        }
+    }
+    delete orden;
+}
+}
+
